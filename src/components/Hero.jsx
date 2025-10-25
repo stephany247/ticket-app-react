@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
@@ -34,7 +33,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                to="/auth/signup"
+                to="/auth/register"
                 className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-600 bg-white text-blue-600 font-medium hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Get Started

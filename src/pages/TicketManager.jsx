@@ -5,14 +5,9 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export default function TicketManagement() {
   const { showToast } = useToastStore();
-  const {
-    getTickets,
-    createTicket,
-    updateTicket,
-    deleteTicket,
-  } = useTicketStore();
+  const { getTickets, createTicket, updateTicket, deleteTicket } =
+    useTicketStore();
   const tickets = getTickets();
-  const { user } = useAuthStore();
 
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState({
@@ -34,6 +29,16 @@ export default function TicketManagement() {
 
     if (!form.title.trim()) {
       showToast("Title is required.", "error");
+      return;
+    }
+
+    // STATUS validation
+    const allowedStatuses = ["open", "in_progress", "closed"];
+    if (!form.value.status) {
+      showToast("Status is required.", "error");
+      return;
+    } else if (!allowedStatuses.includes(form.value.status)) {
+      showToast("Status must be 'open', 'in_progress', or 'closed'.", "error");
       return;
     }
 
@@ -194,7 +199,7 @@ export default function TicketManagement() {
                           : "bg-green-100 text-green-700"
                       }`}
                     >
-                      {ticket.status || "Open"}
+                      {ticket.status}
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
