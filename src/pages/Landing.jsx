@@ -6,11 +6,9 @@ export default function Landing() {
   return (
     <main className="min-h-screen flex flex-col">
       <div className="w-full bg-white">
-        <div className="max-w-360 mx-auto">
-          <Hero />
-        </div>
+        <Hero />
       </div>
-      {/* ===== FEATURES SECTION ===== */}
+      {/* FEATURES SECTION */}
       <section className="bg-blue-50 pb-12">
         <div className="max-w-[1440px] mx-auto px-6 md:px-8 lg:px-12">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
