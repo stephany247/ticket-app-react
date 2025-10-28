@@ -30,7 +30,7 @@ export const useAuthStore = create((set) => ({
         (user) => user.email === email && user.password === password
       );
 
-      if (!existingUser) throw new Error("Email or password is incorrect.");
+      if (!existingUser) throw new Error("Invalid credentials. Please try again.");
 
       const sessionData = {
         ...existingUser,

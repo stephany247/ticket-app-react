@@ -34,11 +34,11 @@ export default function TicketManagement() {
 
     // STATUS validation
     const allowedStatuses = ["open", "in_progress", "closed"];
-    if (!form.value.status) {
+    if (!form.status.trim()) {
       showToast("Status is required.", "error");
       return;
-    } else if (!allowedStatuses.includes(form.value.status)) {
-      showToast("Status must be 'open', 'in_progress', or 'closed'.", "error");
+    } else if (!allowedStatuses.includes(form.status)) {
+      showToast("Status must be 'Open', 'In progress', or 'Closed'.", "error");
       return;
     }
 
@@ -75,11 +75,30 @@ export default function TicketManagement() {
     showToast("Ticket deleted.", "success");
   };
 
+  // Format and style helpers
+  const formatStatus = (status) => {
+    const map = {
+      open: "Open",
+      in_progress: "In Progress",
+      closed: "Closed",
+    };
+    return map[status] || status;
+  };
+
+  const statusClass = (status) => {
+    const classes = {
+      open: "bg-green-100 text-green-700",
+      in_progress: "bg-amber-100 text-amber-700",
+      closed: "bg-gray-100 text-gray-700",
+    };
+    return classes[status] || "bg-gray-100 text-gray-700";
+  };
+
   return (
     <main className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
         {/* LEFT — Create/Edit Ticket Form */}
-        <section className="bg-white rounded-2xl shadow-sm p-6 border border-blue-300">
+        <section className="bg-white rounded-2xl shadow-sm p-6 border border-blue-300 h-fit">
           <h2 className="text-xl font-semibold mb-4">
             {editingId ? "Edit Ticket" : "Create New Ticket"}
           </h2>
@@ -91,7 +110,7 @@ export default function TicketManagement() {
                 htmlFor="title"
                 className="text-sm font-medium text-gray-700"
               >
-                Title
+                Title <span className="text-red-500">*</span>
               </label>
               <input
                 id="title"
@@ -100,6 +119,7 @@ export default function TicketManagement() {
                 onChange={handleChange}
                 placeholder="Enter ticket title"
                 className="mt-1 px-3 py-2 border border-blue-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               />
             </div>
 
@@ -148,18 +168,19 @@ export default function TicketManagement() {
                 htmlFor="status"
                 className="text-sm font-medium text-gray-700"
               >
-                Status
+                Status <span className="text-red-500">*</span>
               </label>
               <select
                 id="status"
                 value={form.status}
                 onChange={handleChange}
                 className="mt-1 px-3 py-2 border border-blue-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               >
                 <option value="">Select status</option>
-                <option value="Open">Open</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Closed">Closed</option>
+                <option value="open">Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="closed">Closed</option>
               </select>
             </div>
 
@@ -191,15 +212,11 @@ export default function TicketManagement() {
                       {ticket.title}
                     </h3>
                     <span
-                      className={`text-xs px-2 py-1 rounded-full ${
-                        ticket.status === "Closed"
-                          ? "bg-gray-100 text-gray-700"
-                          : ticket.status === "In Progress"
-                          ? "bg-amber-100 text-amber-700"
-                          : "bg-green-100 text-green-700"
-                      }`}
+                      className={`text-xs px-2 py-1 rounded-full capitalize ${statusClass(
+                        ticket.status
+                      )}`}
                     >
-                      {ticket.status}
+                      {formatStatus(ticket.status)}
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
@@ -220,13 +237,13 @@ export default function TicketManagement() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEdit(ticket)}
-                        className="text-blue-600 hover:underline text-sm"
+                        className="text-blue-600 hover:underline text-sm cursor-pointer"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(ticket.id)}
-                        className="text-red-600 hover:underline text-sm"
+                        className="text-red-600 hover:underline text-sm cursor-pointer"
                       >
                         Delete
                       </button>

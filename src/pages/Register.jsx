@@ -39,7 +39,7 @@ function Register() {
       setFullNameError("Full Name is required");
       valid = false;
     } else if (password.length < 6) {
-      setFullNameError("Gull Name must be at least 6 characters");
+      setFullNameError("Full Name must be at least 6 characters");
       valid = false;
     }
 
@@ -106,7 +106,7 @@ function Register() {
             onChange={(e) => setFullName(e.target.value)}
           />
           {fullNameError && (
-            <p className="text-red-500 text-sm">{fullNameErrorError}</p>
+            <p className="text-red-500 text-sm">{fullNameError}</p>
           )}
         </div>
         <div className="space-y-2">

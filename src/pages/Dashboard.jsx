@@ -27,9 +27,9 @@ function Dashboard() {
 
     // Fetch or simulate ticket data from localStorage
     const total = tickets.length;
-    const open = tickets.filter((ticket) => ticket.status === "Open").length;
-    const resolved = tickets.filter((t) => t.status === "Closed").length;
-    const in_progress = tickets.filter((t) => t.status === "In Progress").length;
+    const open = tickets.filter((ticket) => ticket.status === "open").length;
+    const resolved = tickets.filter((t) => t.status === "closed").length;
+    const in_progress = tickets.filter((t) => t.status === "in_progress").length;
 
     setTicketStats({ total, open, resolved, in_progress });
   }, [navigate, showToast, user]);
@@ -84,13 +84,13 @@ function Dashboard() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             onClick={() => navigate("/tickets")}
-            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition"
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 ease-in-out cursor-pointer"
           >
             Manage Tickets
           </button>
           <button
             onClick={handleLogout}
-            className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition"
+            className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 ease-in-out cursor-pointer"
           >
             Logout
           </button>

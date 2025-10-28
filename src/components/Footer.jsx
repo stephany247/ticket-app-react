@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-blue-300">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
         <div className="mb-3 md:mb-0">
-          <span className="font-semibold text-gray-800">TicketPro</span> — built with accessibility in mind.
+          <span className="font-semibold text-gray-800">TicketPro</span> — Manage issues, faster.
         </div>
 
         <div className="flex gap-4">

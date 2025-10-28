@@ -35,7 +35,7 @@ export default function Navbar() {
             <>
               <button
                 onClick={logout}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 Logout
               </button>
@@ -44,13 +44,13 @@ export default function Navbar() {
             <>
               <Link
                 to="/auth/login"
-                className="text-blue-600 border border-blue-600 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-white transition"
+                className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition"
               >
                 Login
               </Link>
               <Link
                 to="/auth/register"
-                className="bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
               >
                 Register
               </Link>
